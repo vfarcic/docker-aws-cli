@@ -1,3 +1,3 @@
 # AWS CLI
 
-Description is coming soon
+A container with *AWS CLI* and *jq*. See `docker-compose.yml` for a few usage examples.
