@@ -1,0 +1,11 @@
+version: '3.2'
+
+services:
+
+  asgName:
+    image: vfarcic/aws-cli
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    command: sh -c "aws autoscaling describe-auto-scaling-groups | jq -r '.AutoScalingGroups[] | select(.LaunchConfigurationName | contains(\"${stackName}-NodeLaunchConfig\")).AutoScalingGroupName'"
