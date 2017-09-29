@@ -8,7 +8,7 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
-    command: sh -c "aws autoscaling describe-auto-scaling-groups | jq -r '.AutoScalingGroups[] | select(.LaunchConfigurationName | contains(\"${STACK_NAME}-NodeLaunchConfig\")).AutoScalingGroupName'"
+    command: sh -c "aws autoscaling describe-auto-scaling-groups | jq -r '.AutoScalingGroups[] | select(.AutoScalingGroupName | startswith(\"${STACK_NAME}-NodeLaunchConfig\")).AutoScalingGroupName'"
 
   asg-desired-capacity:
     image: vfarcic/aws-cli
